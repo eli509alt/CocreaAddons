@@ -4,13 +4,13 @@ on:
   release:
     types: [released]
   # Want to trigger manually? Go to the link below.
-  # https://github.com/ScratchAddons/website-v2/actions/workflows/update-addons-data.yml
+  # https://github.com/eli509alt/CocreaAddons/website-v2/actions/workflows/update-addons-data.yml
 
 jobs:
   update:
     name: Update
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ScratchAddons'
+    if: github.repository_owner == 'CocreaAddons'
 
     steps:
       - name: Generate token
@@ -24,7 +24,7 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: Addons Data Update
-          repo: ScratchAddons/website-v2
+          repo: CocreaAddons/website-v2
           token: ${{ steps.generate-token.outputs.token }}
           ref: refs/heads/master
           inputs: '{ "ref": "${{ github.event.release.tag_name }}" }'
