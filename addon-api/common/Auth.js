@@ -10,42 +10,42 @@ export default class Auth extends Listenable {
    * @returns {Promise<boolean>} - whether the user is logged in or not.
    */
   fetchIsLoggedIn() {
-    return Promise.resolve(scratchAddons.globalState.auth.isLoggedIn);
+    return Promise.resolve(cocreaAddons.globalState.auth.isLoggedIn);
   }
   /**
    * Fetch current username.
    * @returns {Promise<?string>} - the username.
    */
   fetchUsername() {
-    return Promise.resolve(scratchAddons.globalState.auth.username);
+    return Promise.resolve(cocreaAddons.globalState.auth.username);
   }
   /**
    * Fetch current user ID.
    * @returns {Promise<?number>} - the user ID.
    */
   fetchUserId() {
-    return Promise.resolve(scratchAddons.globalState.auth.userId);
+    return Promise.resolve(cocreaAddons.globalState.auth.userId);
   }
   /**
    * Fetch X-Token used in new APIs.
    * @returns {Promise<?string>} - the X-Token.
    */
   fetchXToken() {
-    return Promise.resolve(scratchAddons.globalState.auth.xToken);
+    return Promise.resolve(cocreaAddons.globalState.auth.xToken);
   }
   /**
    * CSRF token used in APIs.
    * @type {string}
    */
   get csrfToken() {
-    return scratchAddons.globalState.auth.csrfToken;
+    return cocreaAddons.globalState.auth.csrfToken;
   }
   /**
-   * Language of the Scratch website.
+   * Language of the Cocrea website.
    * @type {string}
    */
-  get scratchLang() {
-    return scratchAddons.globalState.auth.scratchLang;
+  get cocreaLang() {
+    return cocreaAddons.globalState.auth.cocreaLang;
   }
 
   /**
