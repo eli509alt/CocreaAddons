@@ -41,9 +41,9 @@ jobs:
           app_id: ${{ secrets.BOT_APP_ID }}
           private_key: ${{ secrets.BOT_PRIVATE_KEY }}
           
-      - name: Prettify code (ScratchAddons)
+      - name: Prettify code (CocreaAddons)
         if: steps.generate-token.outcome == 'success'
-        uses: ScratchAddons/prettier_action@master
+        uses: CocreaAddons/prettier_action@master
         with:
           prettier_options: --write .
           prettier_version: 3.2.5
@@ -51,9 +51,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           
-      - name: Prettify code (outside ScratchAddons)
+      - name: Prettify code (outside CocreaAddons)
         if: steps.generate-token.outcome != 'success'
-        uses: ScratchAddons/prettier_action@master
+        uses: CocreaAddons/prettier_action@master
         with:
           prettier_options: --write .
           prettier_version: 3.2.5
