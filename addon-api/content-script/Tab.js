@@ -35,10 +35,10 @@ export default class Tab extends Listenable {
    * @type {?string}
    */
   get clientVersion() {
-    if (location.origin !== "https://scratch.mit.edu") return "scratch-www"; // scratchr2 cannot be self-hosted
+    if (location.origin !== "https://www.cocrea.world") return "cocrea-www"; // scratchr2 cannot be self-hosted
     if (!this._clientVersion)
       this._clientVersion = document.querySelector("meta[name='format-detection']")
-        ? "scratch-www"
+        ? "cocrea-www"
         : document.querySelector("script[type='text/javascript']")
           ? "scratchr2"
           : null;
@@ -106,8 +106,8 @@ export default class Tab extends Listenable {
     const url = urlObj.href;
 
     return new Promise((resolve, reject) => {
-      if (scratchAddons.loadedScripts[url]) {
-        const obj = scratchAddons.loadedScripts[url];
+      if (cocreaAddons.loadedScripts[url]) {
+        const obj = cocreaAddons.loadedScripts[url];
         if (obj.loaded) {
           // Script has been already loaded
           resolve();
@@ -129,7 +129,7 @@ export default class Tab extends Listenable {
         // No other addon has loaded this script yet.
         const script = document.createElement("script");
         script.src = url;
-        const obj = (scratchAddons.loadedScripts[url] = {
+        const obj = (cocreaAddons.loadedScripts[url] = {
           script,
           loaded: false,
           error: null,
@@ -223,9 +223,9 @@ export default class Tab extends Listenable {
    * @type {?string}
    */
   get editorMode() {
-    if (isScratchGui || location.pathname === "/projects/editor" || location.pathname === "/projects/editor/") {
-      // Note that scratch-gui does not change the URL when going fullscreen.
-      if (this.redux.state?.scratchGui?.mode?.isFullScreen) return "fullscreen";
+    if (isCocreaGui || location.pathname === "/gandi" || location.pathname === "/gandi/project/") {
+      // Note that cocrea-gui does not change the URL when going fullscreen.
+      if (this.redux.state?.cocreaGui?.mode?.isFullScreen) return "fullscreen";
       return "editor";
     }
     const pathname = location.pathname.toLowerCase();
@@ -256,7 +256,7 @@ export default class Tab extends Listenable {
     } else {
       // Firefox 109-126 only
       // The image is sent to the background event page where it is copied with extension APIs
-      return scratchAddons.methods.copyImage(dataURL).catch((err) => {
+      return cocreaAddons.methods.copyImage(dataURL).catch((err) => {
         return Promise.reject(new Error(`Error inside clipboard handler: ${err}`));
       });
     }
